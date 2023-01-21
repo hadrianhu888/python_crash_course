@@ -14,7 +14,7 @@ class test_background_change:
         pygame.init()
         pygame.display.set_caption("Blue Background Color Test")
         self.New_Settings = New_Settings()
-        self.Character = ch(self)
+        self.character = ch(self)
         """self.screen_width = 1200
         self.screen_height = 800
         red = 100
@@ -30,8 +30,8 @@ class test_background_change:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
-            self.screen.fill(self.bg_color)
-            self.Character.blitme()
+            # self.screen.fill(self.New_Settings.bg_color)
+            self.character.blitme()
             pygame.display.flip()
 
 
