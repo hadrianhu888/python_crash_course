@@ -1,0 +1,5 @@
+I learnt in Python that you can do basic mathematics
+I learnt in Python that you can read, write, edit, append and remove files
+I learnt in Python you can create classes, extend classes and make functions and methods
+I learnt in Python you can do string manipulation
+I learnt in Python unit testing with Py Test and unittest 
