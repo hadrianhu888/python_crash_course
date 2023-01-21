@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg 
 from alien_invasion import *
 
 if __name__ == '__main__':
