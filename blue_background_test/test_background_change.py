@@ -3,7 +3,7 @@ import pygame
 import os
 import new_settings
 from new_settings import New_Settings
-from character import Character as ch
+from character import Character
 """This class is used to create the background image for the game."""
 
 
@@ -14,7 +14,7 @@ class test_background_change:
         pygame.init()
         pygame.display.set_caption("Blue Background Color Test")
         self.New_Settings = New_Settings()
-        self.character = ch(self)
+        self.character = Character(self)
         """self.screen_width = 1200
         self.screen_height = 800
         red = 100
