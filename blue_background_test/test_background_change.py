@@ -1,7 +1,5 @@
 import sys
 import pygame
-import os
-import new_settings
 from new_settings import New_Settings
 from character import Character
 """This class is used to create the background image for the game."""
