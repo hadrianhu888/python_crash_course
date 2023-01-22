@@ -4,9 +4,9 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 """
-    Game class generation and initialization.
-    This class is responsible for the game's main loop and
-    other game functions.
+Game class generation and initialization.
+This class is responsible for the game's main loop and
+other game functions.
 """
 
 
