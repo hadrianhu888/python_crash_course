@@ -13,5 +13,5 @@ class Settings:
 
         # Ship settings
 
-        """Adjst the ship speed"""
+        """Adjust the ship speed"""
         self.ship_speed = 1.5
