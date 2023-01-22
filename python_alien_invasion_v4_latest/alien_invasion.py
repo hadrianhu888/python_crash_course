@@ -25,6 +25,7 @@ class AlienInvasion:
         while True:
             self.check_events()    
             self.ship.update()
+            self.update_bullets()
             self.bullets.update()
             self.update_screen()
             
@@ -47,10 +48,6 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         pygame.display.flip()
-    
-    def check_keydown_events(self,event):
-        """Respond to keypresses."""
-        if event.key == pygame.K_RIGHT:
             # Move the ship to the right.
             self.ship.moving_right = True 
         elif event.key == pygame.K_LEFT:
@@ -62,8 +59,18 @@ class AlienInvasion:
             
     def fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
-        new_bullet = Bullet(self)
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self)
+            self.bullets.add(new_bullet)
+            
+    def update_bullets(self):
+        """Update position of bullets and get rid of old bullets."""
+        # Update bullet positions.
+        self.bullets.update()
+        # Get rid of bullets that have disappeared.
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
             
     def check_keyup_events(self,event):
         """Respond to key releases."""
