@@ -25,16 +25,13 @@ class AlienInvasion:
         while True:
             self.check_events()    
             self.ship.update()
-            self.update_bullets()
-            self.bullets.update()
+            self.update_bullets()           
             self.update_screen()
             
     def check_events(self):
         """Respond to keypresses and mouse events."""
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
+        for event in pygame.event.get(): 
+            if event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self.check_keyup_events(event)
@@ -48,7 +45,25 @@ class AlienInvasion:
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         pygame.display.flip()
-                    
+                                
+    def check_keyup_events(self,event):
+        """Respond to key releases."""
+        if event.key == pygame.K_RIGHT:
+            self.ship.moving_right = False 
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = False
+        
+    def check_keydown_events(self,event):
+        """Respond to keypresses."""       
+        if event.key == pygame.K_RIGHT:
+            # Move the ship to the right.
+            self.ship.moving_right = True 
+        elif event.key == pygame.K_LEFT:
+            self.ship.moving_left = True
+        elif event.key == pygame.K_SPACE:
+            self.fire_bullet()
+        elif event.key == pygame.K_q:
+            sys.exit()
     def fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
         if len(self.bullets) < self.settings.bullets_allowed:
@@ -63,25 +78,6 @@ class AlienInvasion:
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
-            
-    def check_keyup_events(self,event):
-        """Respond to key releases."""
-        if event.key == pygame.K_RIGHT:
-            self.ship.moving_right = False
-        elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = False
-        
-    def check_keydown_events(self,event):
-        """Respond to keypresses."""
-        if event.key == pygame.K_RIGHT:
-            # Move the ship to the right.
-            self.ship.moving_right = True 
-        elif event.key == pygame.K_LEFT:
-            self.ship.moving_left = True
-        elif event.key == pygame.K_SPACE:
-            self.fire_bullet()
-        elif event.key == pygame.K_q:
-            sys.exit()
             
 if __name__ == '__main__': 
     # Make a game instance, and run the game.

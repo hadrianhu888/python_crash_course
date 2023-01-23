@@ -22,11 +22,7 @@ class Ship:
 
         # Movement flags 
         self.moving_right = False
-        self.moving_left = False
-
-        # Ship settings 
-        self.ship_speed = 1.5
-        
+        self.moving_left = False        
 
     def update(self):
         
