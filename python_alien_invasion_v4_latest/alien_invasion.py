@@ -5,6 +5,7 @@ from ship import Ship
 from bullet import Bullet
 
 # TODO: Fix up the ship movement - right now, it is not moving at all.
+# ISSUE: ship movement not working. Implementation issue.
 
 
 class AlienInvasion:
