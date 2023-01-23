@@ -4,6 +4,8 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 
+# TODO: Fix up the ship movement - right now, it is not moving at all.
+
 
 class AlienInvasion:
     """Overall class to manage game assets and behavior."""
