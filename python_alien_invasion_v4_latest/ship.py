@@ -1,5 +1,7 @@
 import pygame
 
+# TODO: Fix up the ship movement - right now, it is not moving at all.
+
 
 class Ship:
     """A class to manage the ship."""
