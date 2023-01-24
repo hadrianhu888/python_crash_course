@@ -40,7 +40,8 @@ class AlienInvasion():
         """Respond to keypresses and mouse events"""
         # Watch for keyboard and mouse events:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or event.type == pygame.K_q:
+                pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
@@ -74,6 +75,12 @@ class AlienInvasion():
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+        elif event.key == pygame.K_UP:
+            self.moving_up = False
+        elif event.key == pygame.K_DOWN:
+            self.moving_down = False
+        elif event.key == pygame.K_SPACE:
+            self.fire_bullet()
 
     def fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
