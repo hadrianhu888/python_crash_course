@@ -43,7 +43,7 @@ class Ship:
             self.rect.y = self.settings.ship_speed + self.settings.ship_acc
 
         # Update rect object from self.x.
-        self.rect.x = self.x
+        self.rect.x = self.rect.x + self.settings.ship_speed
 
     def blitme(self):
         """Draw the ship at its current location."""
