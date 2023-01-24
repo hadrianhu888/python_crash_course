@@ -30,7 +30,7 @@ class AlienInvasion:
         """Start the main loop for the game."""
         while True:
             self.check_events()
-            # self.ship.update() # BUG: updating ship does not move the ship on screen. Not sure why this is the case.
+            self.ship.update()
             self.update_screen()
             self.update_bullets()
             self.update_screen()
@@ -38,7 +38,7 @@ class AlienInvasion:
     def check_events(self):
         """Respond to keypresses and mouse events."""
         for event in pygame.event.get():
-            if event.type == pygame.K_q or pygame.event.get() == pygame.QUIT:
+            if event.type == pygame.K_q and pygame.event.get() == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
@@ -57,41 +57,27 @@ class AlienInvasion:
         pygame.display.flip()
 
     def check_keyup_events(self, event):
-        """Respond to key releases"""
+        """Respond to key releases."""
+        # Do not move the ship when the key is released
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
-            self.ship.rect.x = self.ship.rect.x
-        elif event.key == pygame.K_LEFT:
+        if event.key == pygame.K_LEFT:
             self.ship.moving_left = False
-            self.ship.rect.x = self.ship.rect.x
-        elif event.key == pygame.K_UP:
-            self.moving_up = False
-            self.ship.rect.y = self.ship.rect.y
-        elif event.key == pygame.K_DOWN:
-            self.moving_down = False
-            self.ship.rect.y = self.ship.rect.y
 
     def check_keydown_events(self, event):
-        """Respond to keypresses"""
+        """Respond to key presses."""
+        # Move the ship when the key is pressed.
         if event.key == pygame.K_RIGHT:
-            # Move the ship to the right:
+            # Move the ship to the right.
             self.ship.moving_right = True
-            self.ship.rect.x += self.settings.ship_speed  # + self.settings.ship_acc
-        elif event.key == pygame.K_LEFT:
-            # Move the ship to the left:
+        if event.key == pygame.K_LEFT:
+            # Move the shipt to the left.
             self.ship.moving_left = True
-            self.ship.rect.x -= self.settings.ship_speed  # - self.settings.ship_dec
-        elif event.key == pygame.K_UP:
-            # Move the ship up:
-            self.ship.moving_up = True
-            self.ship.rect.y -= self.settings.ship_speed  # + self.settings.ship_dec
-        elif event.key == pygame.K_DOWN:
-            self.ship.moving_down = True
-            self.ship.rect.y += self.settings.ship_speed  # - self.settings.ship_dec
-        elif event.key == pygame.K_SPACE:
-            # Create a new bullet and add it to the bullets group:
+        if event.key == pygame.K_SPACE:
+            # Fire bullets.
             self.fire_bullet()
-        elif event.type == pygame.K_q or pygame.event.get() == pygame.QUIT:
+        if event.key == pygame.K_q:
+            # Quit the game.
             pygame.quit()
             sys.exit()
 

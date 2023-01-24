@@ -35,10 +35,10 @@ class Ship:
         elif self.moving_left and self.rect.left > 0:
             self.moving_left = True
             self.rect.x = self.settings.ship_speed - self.settings.ship_dec
-        elif self.moving_up and self.rect.top > 0:
+        elif self.moving_up and self.rect.top < 0:
             self.moving_up = True
             self.rect.y = self.settings.ship_speed - self.settings.ship_dec
-        elif self.moving_down and self.rect.bottom < self.screen_rect.bottom:
+        elif self.moving_down and self.rect.bottom > self.screen_rect.bottom:
             self.moving_down = True
             self.rect.y = self.settings.ship_speed + self.settings.ship_acc
 
