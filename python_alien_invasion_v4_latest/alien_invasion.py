@@ -31,13 +31,17 @@ class AlienInvasion:
         while True:
             self.check_events()
             self.ship.update()
+            self.update_screen()
             self.update_bullets()
             self.update_screen()
 
     def check_events(self):
         """Respond to keypresses and mouse events."""
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            elif event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self.check_keyup_events(event)
@@ -54,6 +58,7 @@ class AlienInvasion:
 
     def check_keyup_events(self, event):
         """Respond to key releases."""
+        # Do not move the ship when the key is released
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
@@ -61,14 +66,17 @@ class AlienInvasion:
 
     def check_keydown_events(self, event):
         """Respond to key presses."""
+        # Move the ship when the key is pressed.
         if event.key == pygame.K_RIGHT:
             # Move the ship to the right.
             self.ship.moving_right = True
         elif event.key == pygame.K_LEFT:
+            # Move the shipt to the left.
             self.ship.moving_left = True
         elif event.key == pygame.K_SPACE:
             self.fire_bullet()
         elif event.key == pygame.K_q:
+            pygame.quit()
             sys.exit()
 
     def fire_bullet(self):
