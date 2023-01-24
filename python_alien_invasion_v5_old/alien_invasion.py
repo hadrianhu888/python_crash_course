@@ -28,19 +28,17 @@ class AlienInvasion():
             # Watch keyboard and mouse events:
             self.check_events()
             # self.ship.update()
-
+            self.bullets.update()
             # Get rid of bullets that have disappeared:
-            for bullet in self.bullets.copy():
-                if bullet.rect.bottom <= 0:
-                    self.bullets.remove(bullet)
-
+            self.update_bullets()
             self.update_screen()
 
     def check_events(self):
         """Respond to keypresses and mouse events"""
         # Watch for keyboard and mouse events:
         for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+            if event.type == pygame.QUIT or event.type == pygame.K_q:
+                pygame.quit()
                 sys.exit()
             elif event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
@@ -72,14 +70,31 @@ class AlienInvasion():
         """Respond to key releases"""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
+            self.ship.rect.x = self.ship.rect.x
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+            self.ship.rect.x = self.ship.rect.x
+        elif event.key == pygame.K_UP:
+            self.moving_up = False
+            self.ship.rect.y = self.ship.rect.y
+        elif event.key == pygame.K_DOWN:
+            self.moving_down = False
+            self.ship.rect.y = self.ship.rect.y
 
     def fire_bullet(self):
         """Create a new bullet and add it to the bullets group."""
+        self.bullets.update()
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
+
+    def update_bullets(self):
+        """Updates the bullets on the screen"""
+        self.bullets.update()
+        # Get rid of bullets that have disappeared:
+        for bullet in self.bullets.copy():
+            if bullet.rect.bottom <= 0:
+                self.bullets.remove(bullet)
 
     def update_screen(self):
         """Update images on the screen and flip to the new screen"""
