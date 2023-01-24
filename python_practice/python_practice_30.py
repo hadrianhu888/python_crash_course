@@ -1,6 +1,11 @@
 # moving rectangle game with pygame
 import pygame
-
+"""
+This pygame tests out the 
+ability to move a rectangle
+left, right, up and down with the 
+keyboard 
+"""
 pygame.init()
 win = pygame.display.set_mode((500, 500))
 
