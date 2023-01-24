@@ -41,9 +41,9 @@ class AlienInvasion:
             if event.type == pygame.K_q and pygame.event.get() == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            elif event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
                 self.check_keydown_events(event)
-            elif event.type == pygame.KEYUP:
+            if event.type == pygame.KEYUP:
                 self.check_keyup_events(event)
 
     def update_screen(self):
