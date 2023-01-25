@@ -22,19 +22,28 @@ class Ship:
         # Movement flags
         self.moving_right = False
         self.moving_left = False
-
+        self.moving_up = False
+        self.moving_down = False
         # Store a decimal value for the ship's horizontal position
         self.x = float(self.rect.x)
 
     def update(self):
         """Update the ship's position based on the movement flags."""
         if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.rect.x += self.settings.ship_speed
+            self.moving_right = True
+            self.rect.x = self.settings.ship_speed + self.settings.ship_acc
         elif self.moving_left and self.rect.left > 0:
-            self.rect.x -= self.settings.ship_speed
+            self.moving_left = True
+            self.rect.x = self.settings.ship_speed - self.settings.ship_dec
+        elif self.moving_up and self.rect.top < 0:
+            self.moving_up = True
+            self.rect.y = self.settings.ship_speed - self.settings.ship_dec
+        elif self.moving_down and self.rect.bottom > self.screen_rect.bottom:
+            self.moving_down = True
+            self.rect.y = self.settings.ship_speed + self.settings.ship_acc
 
         # Update rect object from self.x.
-        self.rect.x = self.x
+        self.rect.x = self.rect.x + self.settings.ship_speed
 
     def blitme(self):
         """Draw the ship at its current location."""
