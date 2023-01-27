@@ -112,16 +112,16 @@ class AlienInvasion:
         """Respond to key releases"""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
-            self.ship.rect.x = self.ship.rect.x
+            # self.ship.rect.x = self.ship.rect.x
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
-            self.ship.rect.x = self.ship.rect.x
+            # self.ship.rect.x = self.ship.rect.x
         elif event.key == pygame.K_UP:
             self.moving_up = False
-            self.ship.rect.y = self.ship.rect.y
+            # self.ship.rect.y = self.ship.rect.y
         elif event.key == pygame.K_DOWN:
             self.moving_down = False
-            self.ship.rect.y = self.ship.rect.y
+            # self.ship.rect.y = self.ship.rect.y
 
     def check_keydown_events(self, event):
         """Respond to keypresses"""
