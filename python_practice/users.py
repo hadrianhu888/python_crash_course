@@ -21,7 +21,7 @@ class User:
 
 
 privileges_list = ['can add post', 'can delete post',
-                   'can edit post', 'can add user', 'can remove user']
+                    'can edit post', 'can add user', 'can remove user']
 
 
 class Administrator(User):
