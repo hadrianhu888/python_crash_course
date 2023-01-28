@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from game_stats import GameStats
+from button import Button
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
@@ -26,6 +27,8 @@ class AlienInvasion:
         """ self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height """
+        # Make the play button
+        self.play_button = Button(self, "Play")
 
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
@@ -59,6 +62,24 @@ class AlienInvasion:
                 self.check_keydown_events(event)
             elif event.type == pygame.KEYUP:
                 self.check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self.check_play_button(mouse_pos)
+
+    def check_play_button(self, mouse_pos):
+        """Check mouse down query to see if the play button was pressed."""
+        if self.play_button.rect.collidepoint(mouse_pos):
+            # Reset the game statistics.
+            self.stats.reset_stats()
+            self.stats.game_active = True
+
+            # Get rid of any remaining aliens and bullets.
+            self.aliens.empty()
+            self.bullets.empty()
+
+            # Create a new fleet and center the ship.
+            self.create_fleet()
+            self.ship.center_ship()
 
     def update_screen(self):
         """Update images on the screen, and flip to the new screen."""
@@ -72,6 +93,9 @@ class AlienInvasion:
             bullet.draw_bullet()
         # Add the alien to the screen:
         self.aliens.draw(self.screen)
+        # Draw the play button if the game is inactive:
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         # Continue to update the screen:
         pygame.display.flip()
 

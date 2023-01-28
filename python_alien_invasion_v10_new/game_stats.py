@@ -5,7 +5,8 @@ class GameStats:
         """Initialize statistics."""
         self.settings = ai_game.settings
         # Start Alien Invasion in an active state.
-        self.game_active = True
+        # set to false to start in an inactive state before  the game starts
+        self.game_active = False
         self.reset_stats()
 
     def reset_stats(self):
