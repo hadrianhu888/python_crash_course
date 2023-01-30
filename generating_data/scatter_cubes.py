@@ -1,4 +1,7 @@
 import matplotlib.pyplot as plt
+import os
+import numpy as np
+
 
 plt.style.use('seaborn-darkgrid')
 x_axis = range(1, 5000)
