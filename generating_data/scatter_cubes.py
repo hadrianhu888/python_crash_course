@@ -19,4 +19,4 @@ ax.tick_params(axis='both', which='major', labelsize=14)
 
 plt.show()
 
-plt.savefig(os.path.join('images', 'scatter_plot.png'), bbox_inches='tight')
+plt.savefig('scatter_plot.png', bbox_inches='tight')
