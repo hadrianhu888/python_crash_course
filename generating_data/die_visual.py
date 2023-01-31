@@ -18,17 +18,17 @@ print(results)
 
 # Analyze the results
 
-frequenccies = []
+frequencies = []
 for value in range(1, die.num_sides+1):
     frequency = results.count(value)
-    frequenccies.append(frequency)
+    frequencies.append(frequency)
 
-print(frequenccies)
+print(frequencies)
 
 # Visualize the results
 
 x_values = list(range(1, die.num_sides+1))
-data = [Bar(x=x_values, y=frequenccies)]
+data = [Bar(x=x_values, y=frequencies)]
 
 x_axis_config = {'title': 'Result'}
 y_axis_config = {'title': 'Frequency of Result'}
