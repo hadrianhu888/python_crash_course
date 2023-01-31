@@ -5,9 +5,9 @@ from random import randint
 
 class RandomWalk:
     """A class that defines a random walk function"""
-    num_points = rm.randint(1, 50)
+    num_points = rm.randint(1, 5000)
 
-    def __init__(self, num_points=50):
+    def __init__(self, num_points=5000):
         """Initialize the attributes of the random walk"""
         self.num_points = num_points
         # All walks start at (0, 0)
