@@ -101,6 +101,4 @@ my_layout = Layout(title='Global Earthquakes')
 fig = {'data': data, 'layout': my_layout}
 offline.plot(fig, filename='global_earthquake_30_days.html')
 
-""" readable_file = 'data/readable_eq_data.json'
-with open(readable_file) as f:
-    json.dump(all_eq_data, f, indent=4) """
+# Refactor the code to create a function to create the map.
