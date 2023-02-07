@@ -1,0 +1,14 @@
+{% extends "learning_logs_1/index.html" %} {% block content %}
+
+<p>
+  Learning Log helps you to keep track of your learning. It is a tool that helps
+  you to reflect on your learning and to plan your next steps. It is a tool that
+  helps you to reflect on your learning and to plan your next steps.
+</p>
+
+<p>
+  <a href="{% url 'learning_logs_1:index' %}">Home</a>
+  <a href="{% url 'learning_logs_1:topics' %}">Topics</a>
+</p>
+
+{% if topics %} {% for topic in topics %}
