@@ -1,0 +1,15 @@
+{% extends "learning_logs_1/base.html"%} {% block content %}
+<h1>Topics</h1>
+<ul>
+  {% for topic in topics %}
+  <li><a href="{% url 'learning_logs_1:topic' topic.id %}">{{ topic }}</a></li>
+  <form
+    action="{% url 'learning_logs_1:delete_topic' topic.id %}"
+    method="post"
+  >
+    {% csrf_token %}
+    <button name="submit">Submit</button>
+  </form>
+  {% endfor %}
+</ul>
+{% endblock %}

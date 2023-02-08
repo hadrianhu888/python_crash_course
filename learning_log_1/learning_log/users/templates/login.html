@@ -1,0 +1,12 @@
+{% extends "learning_logs_1/base.html"%} {% block content %} {% if form.errors%}
+<p>Your username and password didn't match. Please try again.</p>
+{% endif %} {% if next %} {% if user.is_authenticated %}
+
+<form method="post" action="{% url 'login' %}?next={{ next }}">
+  {% else %} {% csrf_token %} {{ form.as_p }}
+
+  <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% endif %} {% endblock %}
+</form>
+{% endblock content %}
