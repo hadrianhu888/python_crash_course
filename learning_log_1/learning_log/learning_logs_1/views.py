@@ -1,27 +1,27 @@
 from django.shortcuts import render
 from . import models
 from .forms import TopicForm, EntryForm
-
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def index(request):
     """The home page for Learning Log"""
     return render(request, "learning_logs_1/index.html")
-
+@login_required
 def topics(request):
     """Show all topics."""
     topics = models.Topic.objects.order_by("date_added")
     context = {"topics": topics}
     return render(request, "learning_logs_1/topics.html", context)
-
+@login_required
 def topic(request, topic_id):
     """Show a single topic and all its entries."""
     topic = models.Topic.objects.get(id=topic_id)
     entries = topic.entry_set.order_by("-date_added")
     context = {"topic": topic, "entries": entries}
     return render(request, "learning_logs_1/topic.html", context)
-
+@login_required
 def new_topic(request):
     """Add a new topic."""
     if request.method != "POST":
@@ -35,7 +35,7 @@ def new_topic(request):
             return HttpResponseRedirect(reverse("learning_logs_1:topics"))
     context = {"form": form}
     return render(request, "learning_logs_1/new_topic.html", context)
-
+@login_required
 def new_entry(request, topic_id):
     """Add a new entry for a particular topic."""
     topic = models.Topic.objects.get(id=topic_id)
@@ -52,7 +52,7 @@ def new_entry(request, topic_id):
             return HttpResponseRedirect(reverse("learning_logs_1:topic", args=[topic_id]))
     context = {"topic": topic, "form": form}
     return render(request, "learning_logs_1/new_entry.html", context)
-
+@login_required
 def edit_entry(request, entry_id):
     """Edit an existing entry."""
     entry = models.Entry.objects.get(id=entry_id)
