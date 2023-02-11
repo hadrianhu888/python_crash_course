@@ -1,0 +1,1 @@
+web: gunicorn learning_logs_1.wsgi --bind
