@@ -1,26 +1,24 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import login
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.decorators import login_required # new
 
-# Create your views here.
-@login_required # new
+from django.shortcuts import render, redirect
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
+
 def register(request):
     """Register a new user."""
-    if request.method != "POST":
-        # Display blank registration form.
+    if request.method != 'POST':
+        # Display blank registration form.   
         form = UserCreationForm()
     else:
         # Process completed form.
         form = UserCreationForm(data=request.POST)
+        
         if form.is_valid():
             new_user = form.save()
             # Log the user in and then redirect to home page.
-            authenticated_user = authenticate(username=new_user.username, password=request.POST['password1'])
-            login(request, authenticated_user)
-            return HttpResponseRedirect(reverse('learning_logs_1:topics'))
+            login(request, new_user)
+            return redirect('learning_logs:index')
+
+    # Display a blank or invalid form.
     context = {'form': form}
-    return render(request, 'users/register.html', context)
-
-
-
+    return render(request, 'registration/register.html', context)
