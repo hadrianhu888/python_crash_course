@@ -1,7 +1,14 @@
-<p>Learning Log</p>
+{% extends "learning_logs_1/base.html" %} {% block page_header %}
 
-<p>
-  Learning Log helps you to keep track of your learning. It is a tool that helps
-  you to reflect on your learning and to plan your next steps. It is a tool that
-  helps you to reflect on your learning and to plan your next steps.
-</p>
+<div class="jumpotron">
+  <h1 class="display-3">Track Your Learning</h1>
+  <p class="lead">Use this site to track your learning.</p>
+  <a
+    class="btn btn-lg btn-primary"
+    href="{% url 'learning_logs_1:topics' %}"
+    role="button"
+  >
+    View Topics
+  </a>
+</div>
+{% endblock page_header %}

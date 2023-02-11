@@ -1,12 +1,26 @@
-{% extends "learning_logs_1/base.html"%} {% block content %} {% if form.errors%}
+{% extends "learning_logs_1/base.html"%} {% load bootstrap4 %}{% block content
+%} \ {% block page_header %}
+<h2>Log In</h2>
+{% endblock %} {% block page_content %} {% if user.is_authenticated %}
+<p>You are already logged in.</p>
+{% else %} {% if next %} {% if user.is_authenticated %}
+<p>You are already logged in.</p>
+{% else %}
+<p>Please log in to access this page.</p>
+{% endif %} {% endif %} {% if form.errors%}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %} {% if next %} {% if user.is_authenticated %}
 
 <form method="post" action="{% url 'login' %}?next={{ next }}">
-  {% else %} {% csrf_token %} {{ form.as_p }}
+  <form method="POST" action="{% url 'login' %}?next={{ next }}">
+    {% csrf_token %} {{ form.as_p }} {% else %} {% csrf_token %} {%
+    bootstrap_form form %} {% button %}
+    <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
+    {% endbuttons %} {{ form.as_p }}
 
-  <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
-  <input type="hidden" name="next" value="{{ next }}" />
-  {% endif %} {% endblock %}
+    <button name="Submit" type="submit" class="btn btn-primary">Submit</button>
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% endif %} {% endblock %}
+  </form>
+  {% endblock content %}
 </form>
-{% endblock content %}

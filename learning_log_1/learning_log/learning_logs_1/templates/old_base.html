@@ -1,0 +1,34 @@
+{% extends "learning_logs_1/index.html" %} {% block content %} @if
+user.is_authenticated
+<p>Welcome, {{ user.username }}!</p>
+<p><a href="{% url 'users:register' %}">Register</a></p>
+<p><a href="{% url 'users:login_view' %}">Login</a></p>
+<p><a href="{% url 'users:logout_view' %}">Logout</a></p>
+@else
+<a href="{% url 'learning_logs_1:new_topic' %}">Add New Topic</a>
+{% for topic in topics %}
+<div class="topic">
+  <h2>{{ topic }}</h2>
+  <p>{{ topic.date_added }}</p>
+  <p>{{ topic.owner }}</p>
+</div>
+{% endfor %} {% endblock %} {% extends "learning_logs_1/base.html" %} {% block
+content %}
+<a href="{% url 'learning_logs_1:topics' %}">Back to Topics</a>
+<h2>{{ topic }}</h2>
+<p>{{ topic.date_added }}</p>
+<p>{{ topic.owner }}</p>
+{% endblock %} {% extends "learning_logs_1/base.html" %} {% block content %}
+<a href="{% url 'learning_logs_1:topics' %}">Back to Topics</a>
+<h2>{{ topic }}</h2>
+<p>{{ topic.date_added }}</p>
+<p>
+  Learning Log helps you to keep track of your learning. It is a tool that helps
+  you to reflect on your learning and to plan your next steps. It is a tool that
+  helps you to reflect on your learning and to plan your next steps.
+</p>
+<p>
+  <a href="{% url 'learning_logs_1:index' %}">Home</a>
+  <a href="{% url 'learning_logs_1:topics' %}">Topics</a>
+</p>
+{% if topics %} {% for topic in topics %}

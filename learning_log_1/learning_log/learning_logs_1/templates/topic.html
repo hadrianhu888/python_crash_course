@@ -1,4 +1,17 @@
-{% extends "learning_logs_1/base.html" %} {% block content %}
+{% extends "learning_logs_1/base.html" %} {% block content %} {% block
+page_header %}
+<h3>Topics</h3>
+{% endblock %} {% block page_content %} {% for topic in topics %}
+<h3>{{ topic }}</h3>
+<p>Entries: {{ topic.entry_set.count }}</p>
+<p><a href="{% url 'learning_logs_1:edit_topic' topic.id %}"> Edit </a></p>
+<p>
+  <a href="{% url 'learning_logs_1:edit_entry' topic.id %}"> Edit Entry </a>
+</p>
+{% endfor %}
+<a href="{% url 'learning_logs_1:new_topic' %}">Add new topic</a> {% endblock %}
+{% extends "learning_logs_1/base.html" %} {% block content %} {% block
+page_header %}
 <h1>Topics</h1>
 <ul>
   <p>Topics</p>
